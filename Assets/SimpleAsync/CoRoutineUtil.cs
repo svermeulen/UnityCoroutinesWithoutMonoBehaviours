@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class CoroutineUtil
+public static class CoRoutineUtil
 {
+    // This can be used to make an untyped coroutine typed
+    // (it's nice sometimes to work with untyped coroutines so you can yield other coroutines)
     public static IEnumerator<T> Wrap<T>(IEnumerator runner)
     {
         var coroutine = new CoRoutine(runner);
@@ -37,6 +39,7 @@ public static class CoroutineUtil
         }
     }
 
+    // Block synchronously until the given coroutine completes
     public static void SyncWait(IEnumerator runner)
     {
         var coroutine = new CoRoutine(runner);
@@ -46,6 +49,8 @@ public static class CoroutineUtil
         }
     }
 
+    // Block synchronously until the given coroutine completes
+    // And give up after a timeout
     public static void SyncWaitWithTimeout(IEnumerator runner, float timeout)
     {
         var startTime = DateTime.UtcNow;
@@ -82,6 +87,7 @@ public static class CoroutineUtil
         return (T)coroutine.ReturnValue;
     }
 
+    // Execute all the given coroutines in parallel
     public static IEnumerator MakeParallelGroup(IEnumerable<IEnumerator> runners)
     {
         var runnerList = runners.Select(x => new CoRoutine(x)).ToList();

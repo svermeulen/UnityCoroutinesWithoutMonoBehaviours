@@ -8,6 +8,8 @@ using System.Text;
 using System.Xml.Serialization;
 using System.IO;
 
+// Wrapper class for IEnumerator objects
+// This class is nice because it allows IEnumerator's to return other IEnumerator's just like Unity
 // We call it CoRoutine instead of Coroutine to differentiate it from UnityEngine.CoRoutine
 public class CoRoutine
 {

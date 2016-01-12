@@ -42,7 +42,6 @@ public class TestAsyncProcessor
     [Test]
     public void TestNested()
     {
-        // They should run in parallel
         _asyncHandler.Process(RunNested());
 
         var start = Time.realtimeSinceStartup;

@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEditor;
 using NUnit.Framework;
 
-//[TestFixture]
 public class TestCoRoutine
 {
     [Test]
@@ -21,8 +20,8 @@ public class TestCoRoutine
         }
         catch (Exception e)
         {
-            // Should print out object trace
-            Console.Error.WriteLine(e.ToString());
+            // Should print out a readable object trace
+            Debug.LogException(e);
         }
     }
 
